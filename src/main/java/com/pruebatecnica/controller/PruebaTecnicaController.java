@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pruebatecnica.entity.Estudiantes;
+import com.pruebatecnica.entity.EstudiantesPreguntas;
 import com.pruebatecnica.entity.Opciones;
 import com.pruebatecnica.entity.Preguntas;
+import com.pruebatecnica.service.EstudiantesPreguntasService;
 import com.pruebatecnica.service.EstudiantesService;
 import com.pruebatecnica.service.OpcionesService;
 import com.pruebatecnica.service.PreguntasService;
@@ -36,6 +38,8 @@ public class PruebaTecnicaController {
 	@Autowired
 	EstudiantesService estudiantesService;
 	
+	@Autowired
+	EstudiantesPreguntasService estudiantesPreguntasService;
 
 	
 	@PostMapping("/obtieneOpcionesPorIdPregunta")
@@ -205,4 +209,35 @@ public class PruebaTecnicaController {
 
 		}
 		
+	 @GetMapping("/obtieneEstudiantesPreguntas")
+		public ResponseEntity<List<EstudiantesPreguntas>> obtieneEstudiantesPreguntas(){
+	        String reponse = "";
+	        
+	        try {
+	        	List<EstudiantesPreguntas>  estudiantes= estudiantesPreguntasService.findAll();
+		        ObjectMapper mapper = new ObjectMapper();
+		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
+				return ResponseEntity.ok(estudiantes);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		}
+	 
+	 @PostMapping("/creaEstudiantesPreguntas")
+		public ResponseEntity<EstudiantesPreguntas> creaEstudiantesPreguntas(@RequestBody EstudiantesPreguntas estudiantesPregunta){
+	        String reponse = "";
+	        
+	        try {
+	        	EstudiantesPreguntas  estudiantesPreguntas= estudiantesPreguntasService.save(estudiantesPregunta);
+		        ObjectMapper mapper = new ObjectMapper();
+		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
+				return ResponseEntity.ok(estudiantesPreguntas);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		}
 }

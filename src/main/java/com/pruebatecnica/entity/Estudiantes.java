@@ -29,8 +29,8 @@ public class Estudiantes {
 	private String ciudad;
 	
 	@Column(name ="zona_horaria")
-	private TimeZone zonaHoraria;
-	//private LocalDate zonaHoraria;
+	//private TimeZone zonaHoraria;
+	private LocalDate zonaHoraria;
 
 	
 
@@ -74,11 +74,11 @@ public class Estudiantes {
 		this.ciudad = ciudad;
 	}
 
-	public TimeZone  getZonaHoraria() {
+	public LocalDate  getZonaHoraria() {
 		return zonaHoraria;
 	}
 
-	public void setZonaHoraria(TimeZone  zonaHoraria) {
+	public void setZonaHoraria(LocalDate  zonaHoraria) {
 		this.zonaHoraria = zonaHoraria;
 	}
 
