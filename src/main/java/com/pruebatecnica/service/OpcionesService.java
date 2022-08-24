@@ -14,5 +14,9 @@ public interface OpcionesService{
    
 	 Opciones findById(Long id);
 	 
+	 Opciones save(Opciones opciones);
+
+	 List<Opciones> findByIdPregunta(Preguntas preguntas);
+	 
 	 
 }

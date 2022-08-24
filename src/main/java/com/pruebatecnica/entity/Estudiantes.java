@@ -5,8 +5,10 @@ import java.util.TimeZone;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="estudiantes")
 public class Estudiantes {
  
 	@Id

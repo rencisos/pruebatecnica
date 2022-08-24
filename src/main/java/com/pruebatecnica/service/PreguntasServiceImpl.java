@@ -32,7 +32,7 @@ public class PreguntasServiceImpl implements  PreguntasService{
 			   return opciones;
 	
 		   } catch (Exception e) {
-				throw new ServiceException("Error en la capa controller",e);
+				throw new ServiceException("Error en la capa service",e);
 			}
 		}
    
@@ -45,10 +45,24 @@ public class PreguntasServiceImpl implements  PreguntasService{
 			   return preguntas;
 	
 		   } catch (Exception e) {
-				throw new ServiceException("Error en la capa controller",e);
+				throw new ServiceException("Error en la capa service",e);
 			
 		 }
 	    }
+
+		@Override
+		public Preguntas save(Preguntas opciones) {
+			try {
+				   Preguntas preguntas = new Preguntas();
+				   preguntas = repository.save(opciones);
+				   
+				   return preguntas;
+		
+			   } catch (Exception e) {
+					throw new ServiceException("Error en la capa service",e);
+				
+			 }
+		}
 
 
 		

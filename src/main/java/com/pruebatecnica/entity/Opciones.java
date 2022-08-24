@@ -1,22 +1,27 @@
 package com.pruebatecnica.entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Opciones {
+@Table(name="opciones")
+public class Opciones implements Serializable{
  
 	@Id
 	@Column(name ="id_opcion")
-	private Long id_opcion;
+	private Long idOpcion;
 	
 	@ManyToOne
 	@JoinColumn(name="id_pregunta")
-	private Preguntas id_pregunta;
+	private Preguntas idPregunta;
 	
 	@Column(name ="descripcion")
 	private String descripcion;
@@ -27,20 +32,21 @@ public class Opciones {
 	@Column(name ="valor")
 	private String valor;
 
-	public Long getId_opcion() {
-		return id_opcion;
+	
+	public Long getIdOpcion() {
+		return idOpcion;
 	}
 
-	public void setId_opcion(Long id_opcion) {
-		this.id_opcion = id_opcion;
+	public void setIdOpcion(Long idOpcion) {
+		this.idOpcion = idOpcion;
 	}
 
-	public Preguntas getId_pregunta() {
-		return id_pregunta;
+	public Preguntas getIdPregunta() {
+		return idPregunta;
 	}
 
-	public void setId_pregunta(Preguntas id_pregunta) {
-		this.id_pregunta = id_pregunta;
+	public void setIdPregunta(Preguntas idPregunta) {
+		this.idPregunta = idPregunta;
 	}
 
 	public String getDescripcion() {

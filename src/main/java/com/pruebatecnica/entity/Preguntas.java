@@ -1,26 +1,31 @@
 package com.pruebatecnica.entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Preguntas {
+@Table(name="preguntas")
+public class Preguntas implements Serializable{
  
 	@Id
 	@Column(name ="id_pregunta")
-	private Long id_pregunta;
+	private Long idPregunta;
 	
 	@Column(name ="descripcion")
 	private String descripcion;
 
-	public Long getId_pregunta() {
-		return id_pregunta;
+	
+	public Long getIdPregunta() {
+		return idPregunta;
 	}
 
-	public void setId_pregunta(Long id_pregunta) {
-		this.id_pregunta = id_pregunta;
+	public void setIdPregunta(Long idPregunta) {
+		this.idPregunta = idPregunta;
 	}
 
 	public String getDescripcion() {

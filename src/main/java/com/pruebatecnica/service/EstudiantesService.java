@@ -3,16 +3,18 @@ package com.pruebatecnica.service;
 
 import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import com.pruebatecnica.entity.Estudiantes;
 import com.pruebatecnica.entity.Opciones;
 import com.pruebatecnica.entity.Preguntas;
 
 
 @Repository
-public interface PreguntasService{
+public interface EstudiantesService{
 
-	 List<Preguntas> findAll();
-	
-	 Preguntas findPreguntasById(Long id);
+	 List<Estudiantes> findAll();
+   
+	 Estudiantes findEstudiantesById(Long id);
 	 
-	 Preguntas save(Preguntas opciones);
+	 
 }
