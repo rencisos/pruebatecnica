@@ -16,5 +16,7 @@ public interface EstudiantesService{
    
 	 Estudiantes findEstudiantesById(Long id);
 	 
+	 Estudiantes save(Estudiantes opciones);
+
 	 
 }

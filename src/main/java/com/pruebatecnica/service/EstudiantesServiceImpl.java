@@ -51,5 +51,18 @@ public class EstudiantesServiceImpl implements  EstudiantesService{
 	    }
 		
 		
-   
+		@Override
+		public Estudiantes save(Estudiantes estudiante) {
+			try {
+				
+				Estudiantes estudiantes = new Estudiantes();
+				estudiantes = repository.save(estudiante);
+				   
+				   return estudiantes;
+		
+			   } catch (Exception e) {
+					throw new ServiceException("Error en la capa service",e);
+				
+			 }
+		}
 }

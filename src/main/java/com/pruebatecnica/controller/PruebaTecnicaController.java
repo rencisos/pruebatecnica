@@ -188,4 +188,21 @@ public class PruebaTecnicaController {
 		}
 
 	}
+	
+	 @PostMapping("/creaEstudiante")
+		public ResponseEntity<Estudiantes> creaEstudiante(@RequestBody Estudiantes estudiante){
+	        String reponse = "";
+	        
+	        try {
+	        	Estudiantes estudiantes = estudiantesService.save(estudiante);
+		        ObjectMapper mapper = new ObjectMapper();
+		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
+				return ResponseEntity.ok(estudiantes);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		}
+		
 }

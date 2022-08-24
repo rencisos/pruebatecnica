@@ -1,5 +1,6 @@
 package com.pruebatecnica.entity;
 
+import java.time.LocalDate;
 import java.util.TimeZone;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ public class Estudiantes {
  
 	@Id
 	@Column(name ="id_estudiante")
-	private Long id_estudiante;
+	private Long idEstudiante;
 	
 	@Column(name ="nombre")
 	private String nombre;
@@ -28,14 +29,17 @@ public class Estudiantes {
 	private String ciudad;
 	
 	@Column(name ="zona_horaria")
-	private TimeZone zona_horaria;
+	private TimeZone zonaHoraria;
+	//private LocalDate zonaHoraria;
 
-	public Long getId_estudiante() {
-		return id_estudiante;
+	
+
+	public Long getIdEstudiante() {
+		return idEstudiante;
 	}
 
-	public void setId_estudiante(Long id_estudiante) {
-		this.id_estudiante = id_estudiante;
+	public void setIdEstudiante(Long idEstudiante) {
+		this.idEstudiante = idEstudiante;
 	}
 
 	public String getNombre() {
@@ -70,13 +74,15 @@ public class Estudiantes {
 		this.ciudad = ciudad;
 	}
 
-	public TimeZone getZona_horaria() {
-		return zona_horaria;
+	public TimeZone  getZonaHoraria() {
+		return zonaHoraria;
 	}
 
-	public void setZona_horaria(TimeZone zona_horaria) {
-		this.zona_horaria = zona_horaria;
+	public void setZonaHoraria(TimeZone  zonaHoraria) {
+		this.zonaHoraria = zonaHoraria;
 	}
+
+	
 
 	
 }
