@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import com.pruebatecnica.dto.CalificacionEstudianteDto;
+import com.pruebatecnica.dto.PreguntasDto;
 import com.pruebatecnica.entity.EstudiantesPreguntas;
 import com.pruebatecnica.entity.Opciones;
 import com.pruebatecnica.entity.Preguntas;
@@ -23,7 +25,9 @@ public class EstudiantesPreguntasServiceImpl implements  EstudiantesPreguntasSer
 
    @Autowired
    EstudiantesPreguntasRepository repository;
-  
+   
+   @Autowired
+   OpcionesService opcionesService;
 		
 	   @Override
 		public List<EstudiantesPreguntas> findAll() {
@@ -65,6 +69,68 @@ public class EstudiantesPreguntasServiceImpl implements  EstudiantesPreguntasSer
 					throw new ServiceException("Error en la capa service",e);
 				
 			 }
+		}
+
+		@Override
+		public CalificacionEstudianteDto obtieneCalificaciones(Long id) {
+			 try {
+				   EstudiantesPreguntas opciones = new EstudiantesPreguntas();
+				   opciones = repository.findById(id).orElse(null);
+				  
+				   
+				   List<Opciones> listaOpciones =opcionesService.findByIdPregunta(opciones.getIdPregunta());
+				   
+				   int valorCal= 0;
+				   CalificacionEstudianteDto calificacionEstudianteDto = new CalificacionEstudianteDto();
+				   calificacionEstudianteDto.setNombre(opciones.getIdEstudiante().getNombre());
+				   calificacionEstudianteDto.setApellido(opciones.getIdEstudiante().getApellido());
+				   
+				   
+				   PreguntasDto  preguntasDto = new PreguntasDto();
+				   preguntasDto.setId(opciones.getIdPregunta().getIdPregunta());
+				   preguntasDto.setDescripcion(opciones.getIdPregunta().getDescripcion());
+
+				   List<PreguntasDto>  listaPreguntasDto = new ArrayList<PreguntasDto>();
+				   listaPreguntasDto.add(preguntasDto);
+				   
+				   calificacionEstudianteDto.setListaPreguntas(listaPreguntasDto);
+				   
+				   for (Opciones op:listaOpciones) {
+					   valorCal = valorCal + op.getValor();
+				   }
+				   
+				   calificacionEstudianteDto.setCalificacion(valorCal);
+				   
+				   return calificacionEstudianteDto;
+		
+			   } catch (Exception e) {
+					throw new ServiceException("Error en la capa service",e);
+				}
+		}
+
+		@Override
+		public EstudiantesPreguntas Update(EstudiantesPreguntas opciones) {
+			 try {
+				 
+				 
+				 List<Opciones> listaOpciones =opcionesService.findByIdPregunta(opciones.getIdPregunta());
+
+				 for (Opciones opc:listaOpciones) {
+					 if(opc.getIdPregunta().getIdPregunta()==opciones.getIdPregunta().getIdPregunta()
+							 && opc.getValor()>0){
+						 if (repository.existsById(opciones.getIdEstudiantePregunta())) {
+								return repository.save(opciones);
+						 }
+					 }
+				 }
+				 
+				
+				
+		   } catch (Exception e) {
+				throw new ServiceException("Error en la capa service",e);
+			}
+				
+			 return null;
 		}
 
 

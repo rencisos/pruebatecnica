@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pruebatecnica.dto.CalificacionEstudianteDto;
+import com.pruebatecnica.dto.EstudiantesPreguntasDto;
 import com.pruebatecnica.entity.Estudiantes;
 import com.pruebatecnica.entity.EstudiantesPreguntas;
 import com.pruebatecnica.entity.Opciones;
@@ -60,12 +62,9 @@ public class PruebaTecnicaController {
 	
 	@GetMapping("/obtieneOpciones")
 	public ResponseEntity<List<Opciones>> obtieneOpciones(){
-        String reponse = "";
         
         try {
         	List<Opciones> opciones = opcionesService.findAll();
-	        ObjectMapper mapper = new ObjectMapper();
-	        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 			return ResponseEntity.ok(opciones);
 
 		} catch (Exception e) {
@@ -110,12 +109,9 @@ public class PruebaTecnicaController {
 	 
 	@GetMapping("/obtienePreguntas")
 	public ResponseEntity<List<Preguntas>> obtienePreguntas(){
-        String reponse = "";
         
         try {
         	List<Preguntas>  preguntas= preguntasService.findAll();
-	        ObjectMapper mapper = new ObjectMapper();
-	        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 			return ResponseEntity.ok(preguntas);
 
 		} catch (Exception e) {
@@ -128,12 +124,9 @@ public class PruebaTecnicaController {
 	
 	@GetMapping("/obtienePreguntas/{id}")
 	public ResponseEntity<Preguntas> obtienePreguntasPorId(@PathVariable("id") Long id){
-        String reponse = "";
         
         try {
         	Preguntas opciones = preguntasService.findPreguntasById(id);
-	        ObjectMapper mapper = new ObjectMapper();
-	        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 			return ResponseEntity.ok(opciones);
 
 		} catch (Exception e) {
@@ -145,12 +138,9 @@ public class PruebaTecnicaController {
 	
 	 @PostMapping("/creaPregunta")
 		public ResponseEntity<Preguntas> obtieneOpciones(@RequestBody Preguntas pregunta){
-	        String reponse = "";
 	        
 	        try {
 	        	Preguntas preguntas = preguntasService.save(pregunta);
-		        ObjectMapper mapper = new ObjectMapper();
-		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 				return ResponseEntity.ok(preguntas);
 
 			} catch (Exception e) {
@@ -162,12 +152,9 @@ public class PruebaTecnicaController {
 	
 	@GetMapping("/obtieneEstudiantes")
 	public ResponseEntity<List<Estudiantes>> obtieneEstudiantes(){
-        String reponse = "";
         
         try {
         	List<Estudiantes>  estudiantes= estudiantesService.findAll();
-	        ObjectMapper mapper = new ObjectMapper();
-	        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 			return ResponseEntity.ok(estudiantes);
 
 		} catch (Exception e) {
@@ -179,12 +166,9 @@ public class PruebaTecnicaController {
 	
 	@GetMapping("/obtieneEstudiantes/{id}")
 	public ResponseEntity<Estudiantes> obtieneEstudiantesPorId(@PathVariable("id") Long id){
-        String reponse = "";
         
         try {
         	Estudiantes estudiantes = estudiantesService.findEstudiantesById(id);
-	        ObjectMapper mapper = new ObjectMapper();
-	        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 			return ResponseEntity.ok(estudiantes);
 
 		} catch (Exception e) {
@@ -195,12 +179,9 @@ public class PruebaTecnicaController {
 	
 	 @PostMapping("/creaEstudiante")
 		public ResponseEntity<Estudiantes> creaEstudiante(@RequestBody Estudiantes estudiante){
-	        String reponse = "";
 	        
 	        try {
 	        	Estudiantes estudiantes = estudiantesService.save(estudiante);
-		        ObjectMapper mapper = new ObjectMapper();
-		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 				return ResponseEntity.ok(estudiantes);
 
 			} catch (Exception e) {
@@ -211,12 +192,9 @@ public class PruebaTecnicaController {
 		
 	 @GetMapping("/obtieneEstudiantesPreguntas")
 		public ResponseEntity<List<EstudiantesPreguntas>> obtieneEstudiantesPreguntas(){
-	        String reponse = "";
 	        
 	        try {
 	        	List<EstudiantesPreguntas>  estudiantes= estudiantesPreguntasService.findAll();
-		        ObjectMapper mapper = new ObjectMapper();
-		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 				return ResponseEntity.ok(estudiantes);
 
 			} catch (Exception e) {
@@ -227,10 +205,38 @@ public class PruebaTecnicaController {
 	 
 	 @PostMapping("/creaEstudiantesPreguntas")
 		public ResponseEntity<EstudiantesPreguntas> creaEstudiantesPreguntas(@RequestBody EstudiantesPreguntas estudiantesPregunta){
-	        String reponse = "";
 	        
 	        try {
 	        	EstudiantesPreguntas  estudiantesPreguntas= estudiantesPreguntasService.save(estudiantesPregunta);
+				return ResponseEntity.ok(estudiantesPreguntas);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		}
+	 
+	 
+	 @GetMapping("/obtieneCalificaciones/{id}")
+		public ResponseEntity<CalificacionEstudianteDto> obtieneCalificaciones(@PathVariable("id") Long id){
+	        
+	        try {
+	        	CalificacionEstudianteDto  estudiantes= estudiantesPreguntasService.obtieneCalificaciones(id);
+				return ResponseEntity.ok(estudiantes);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		}
+	 
+	 
+	 @PutMapping("/updateEstudiantesPreguntas")
+		public ResponseEntity<EstudiantesPreguntas> updateEstudiantesPreguntas(@RequestBody EstudiantesPreguntas estudiantesPregunta){
+	        String reponse = "";
+	        
+	        try {
+	        	EstudiantesPreguntas  estudiantesPreguntas= estudiantesPreguntasService.Update(estudiantesPregunta);
 		        ObjectMapper mapper = new ObjectMapper();
 		        JsonNode jsonNodeResponse = mapper.readTree(reponse);
 				return ResponseEntity.ok(estudiantesPreguntas);
@@ -240,4 +246,20 @@ public class PruebaTecnicaController {
 			}
 
 		}
+	 
+	 
+	 @GetMapping ("/obtieneExamenAsignado/{id}")
+	 public ResponseEntity<CalificacionEstudianteDto> obtieneExamenAsignado(@PathVariable("id") Long id){
+		 
+		 try {
+			    CalificacionEstudianteDto estudiantesPreguntasDto = estudiantesService.obtieneExamenAsignado(id);
+				return ResponseEntity.ok(estudiantesPreguntasDto);
+
+			} catch (Exception e) {
+				throw new ServiceException("Error en la capa controller",e);
+			}
+
+		 
+	 }
+	 
 }

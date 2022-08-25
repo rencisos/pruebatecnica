@@ -22,6 +22,9 @@ public class EstudiantesPreguntas {
 	@ManyToOne
 	@JoinColumn(name="id_pregunta")
 	private Preguntas idPregunta;
+	
+	@Column(name ="valor")
+	private int valor;
 
 	public Long getIdEstudiantePregunta() {
 		return idEstudiantePregunta;
@@ -45,6 +48,14 @@ public class EstudiantesPreguntas {
 
 	public void setIdPregunta(Preguntas idPregunta) {
 		this.idPregunta = idPregunta;
+	}
+
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
 	}
 	
 	

@@ -30,7 +30,7 @@ public class Opciones implements Serializable{
 	private String respuesta;
 	
 	@Column(name ="valor")
-	private String valor;
+	private int valor;
 
 	
 	public Long getIdOpcion() {
@@ -65,11 +65,11 @@ public class Opciones implements Serializable{
 		this.respuesta = respuesta;
 	}
 
-	public String getValor() {
+	public int getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(int valor) {
 		this.valor = valor;
 	}
 	
