@@ -7,25 +7,197 @@
 	},
 	"item": [
 		{
-			"name": "Estudiantes",
+			"name": "1. Creación examen",
+			"item": [
+				{
+					"name": "2.Opciones para Preguntas",
+					"item": [
+						{
+							"name": "ConsultaOpciones",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/obtieneOpciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"obtieneOpciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ConsultaOpcionesPorIdPregunta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPregunta\":1,\r\n    \"descripcion\":\"Pregunta 1\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/obtieneOpcionesPorIdPregunta",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"obtieneOpcionesPorIdPregunta"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "creaOpciones",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_opcion\":17,\r\n    \"id_pregunta\":{\r\n    \"id_pregunta\":5,\r\n    \"descripcion\":\"Pregunta 5\"\r\n    },\r\n    \"descripcion\":\"A. Pregunta 1\",\r\n    \"respuesta\" : 1,\r\n    \"valor\": \"50\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/creaOpciones",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"creaOpciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ConsultaOpcionesPorId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/obtieneOpciones/17",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"obtieneOpciones",
+										"17"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1.Preguntas",
+					"item": [
+						{
+							"name": "Consulta Preguntas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/obtienePreguntas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"obtienePreguntas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreaPreguntas",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idPregunta\":6,\r\n    \"descripcion\":\"Pregunta 6\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/creaPregunta",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"creaPregunta"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta PreguntasPorId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/obtienePreguntas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"obtienePreguntas",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "2. Crear un Estudiante",
 			"item": [
 				{
 					"name": "ConsultaEstudiantes",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtieneEstudiantes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtieneEstudiantes"
-							]
-						}
+						"header": []
 					},
 					"response": []
 				},
@@ -33,27 +205,14 @@
 					"name": "ConsultaEstudiantesPorId",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtieneEstudiantes/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtieneEstudiantes",
-								"1"
-							]
-						}
+						"header": []
 					},
 					"response": []
 				},
 				{
 					"name": "CreaEstudiante",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": []
 					},
 					"response": []
@@ -61,36 +220,84 @@
 			]
 		},
 		{
-			"name": "Opciones",
+			"name": "3. Definir fecha del examen y asignar examen a estudiantes",
 			"item": [
 				{
-					"name": "ConsultaOpciones",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtieneOpciones",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtieneOpciones"
-							]
+					"name": "Asignacion de examen",
+					"item": [
+						{
+							"name": "Asignación de examen- Pregunta 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"idEstudiantePregunta\": 1,\r\n   \"idEstudiante\":{\r\n    \"idEstudiante\":3,\r\n    \"nombre\":\"Estuiante\",\r\n    \"apellido\":\"3\",\r\n    \"edad\":\"24\",\r\n    \"ciudad\":\"Bogota\",\r\n    \"zonaHoraria\":\"2022-08-24T14:45:15\"\r\n    \r\n    },\r\n   \"idPregunta\":{\r\n        \"idPregunta\":1,\r\n        \"descripcion\":\"Pregunta 1\"\r\n   },\r\n   \"valor\":50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/creaEstudiantesPreguntas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"creaEstudiantesPreguntas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Asignación de examen- Pregunta 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"idEstudiantePregunta\": 2,\r\n   \"idEstudiante\":{\r\n    \"idEstudiante\":3,\r\n    \"nombre\":\"Estuiante\",\r\n    \"apellido\":\"3\",\r\n    \"edad\":\"24\",\r\n    \"ciudad\":\"Bogota\",\r\n    \"zonaHoraria\":\"2022-08-24T14:45:15\"\r\n    \r\n    },\r\n   \"idPregunta\":{\r\n        \"idPregunta\":2,\r\n        \"descripcion\":\"Pregunta 2\"\r\n   }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/pruebaTecnica/creaEstudiantesPreguntas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pruebaTecnica",
+										"creaEstudiantesPreguntas"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
+					]
+				}
+			]
+		},
+		{
+			"name": "4. Recopilarlas respuestas de un estudiante",
+			"item": [
 				{
-					"name": "ConsultaOpcionesPorIdPregunta",
+					"name": "Envio Respuesta 1",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idPregunta\":4,\r\n    \"descripcion\":\"Pregunta 4\"\r\n\r\n}",
+							"raw": "{\r\n  \"idEstudiantePregunta\": 1,\r\n   \"idEstudiante\":{\r\n    \"idEstudiante\":3,\r\n    \"nombre\":\"Estuiante\",\r\n    \"apellido\":\"3\",\r\n    \"edad\":\"24\",\r\n    \"ciudad\":\"Bogota\",\r\n    \"zonaHoraria\":\"2022-08-24T14:45:15\"\r\n    \r\n    },\r\n   \"idPregunta\":{\r\n        \"idPregunta\":1,\r\n        \"descripcion\":\"Pregunta 1\"\r\n   },\r\n   \"valor\":50\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,7 +305,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtieneOpcionesPorIdPregunta",
+							"raw": "http://localhost:8080/pruebaTecnica/updateEstudiantesPreguntas",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -106,20 +313,20 @@
 							"port": "8080",
 							"path": [
 								"pruebaTecnica",
-								"obtieneOpcionesPorIdPregunta"
+								"updateEstudiantesPreguntas"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "creaOpciones",
+					"name": "Envio Respuesta 2",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id_opcion\":17,\r\n    \"id_pregunta\":{\r\n    \"id_pregunta\":5,\r\n    \"descripcion\":\"Pregunta 5\"\r\n    },\r\n    \"descripcion\":\"A. Pregunta 1\",\r\n    \"respuesta\" : 1,\r\n    \"valor\": \"25\"\r\n\r\n}",
+							"raw": "{\r\n  \"idEstudiantePregunta\": 2,\r\n   \"idEstudiante\":{\r\n    \"idEstudiante\":3,\r\n    \"nombre\":\"Estuiante\",\r\n    \"apellido\":\"3\",\r\n    \"edad\":\"24\",\r\n    \"ciudad\":\"Bogota\",\r\n    \"zonaHoraria\":\"2022-08-24T14:45:15\"\r\n    \r\n    },\r\n   \"idPregunta\":{\r\n        \"idPregunta\":1,\r\n        \"descripcion\":\"Pregunta 2\"\r\n   },\r\n   \"valor\":50\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -127,7 +334,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/creaOpciones",
+							"raw": "http://localhost:8080/pruebaTecnica/updateEstudiantesPreguntas",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,28 +342,7 @@
 							"port": "8080",
 							"path": [
 								"pruebaTecnica",
-								"creaOpciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ConsultaOpcionesPorId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtieneOpciones/17",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtieneOpciones",
-								"17"
+								"updateEstudiantesPreguntas"
 							]
 						}
 					},
@@ -165,36 +351,19 @@
 			]
 		},
 		{
-			"name": "Preguntas",
+			"name": "5. Calificar los exámenes",
 			"item": [
 				{
-					"name": "Preguntas",
+					"name": "Calificación de examen",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtienePreguntas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtienePreguntas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreaPreguntas",
-					"request": {
-						"method": "POST",
-						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idPregunta\":6,\r\n    \"descripcion\":\"Pregunta 6\"\r\n\r\n}",
+							"raw": "{\r\n  \r\n    \"idEstudiante\": 2,\r\n    \"nombre\":\"Estuiante\",\r\n    \"apellido\":\"2\",\r\n    \"edad\":23,\r\n    \"ciudad\":\"CMDX\",\r\n    \"zonaHoraria\":\"2022-08-24T14:45:15\"\r\n\r\n    \r\n \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,7 +371,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/creaPregunta",
+							"raw": "http://localhost:8080/pruebaTecnica/obtieneExamenAsignado/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -210,28 +379,8 @@
 							"port": "8080",
 							"path": [
 								"pruebaTecnica",
-								"creaPregunta"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PreguntasPorId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pruebaTecnica/obtienePreguntas/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pruebaTecnica",
-								"obtienePreguntas",
-								"1"
+								"obtieneExamenAsignado",
+								"3"
 							]
 						}
 					},
